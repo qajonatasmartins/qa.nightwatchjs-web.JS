@@ -1,7 +1,7 @@
-describe('Ecosia.org Demo', function() {
+describe('Ecosia.org Demo', function () {
   before(browser => browser.navigateTo('https://www.ecosia.org/'));
 
-  it('Demo test ecosia.org', function(browser) {
+  it('Demo test ecosia.org', function (browser) {
     browser
       .waitForElementVisible('body')
       .assert.titleContains('Ecosia')
@@ -9,7 +9,7 @@ describe('Ecosia.org Demo', function() {
       .setValue('input[type=search]', 'nightwatch')
       .assert.visible('button[type=submit]')
       .click('button[type=submit]')
-      .assert.textContains('.layout__content', 'Nightwatch.js');
+      .assert.textContains('.layout__content', 'Nightwatch');
   });
 
   after(browser => browser.end());

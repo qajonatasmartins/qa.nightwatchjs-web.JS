@@ -1,6 +1,7 @@
 // Refer to the online docs for more details:
 // https://nightwatchjs.org/gettingstarted/configuration/
 //
+
 //  _   _  _         _      _                     _          _
 // | \ | |(_)       | |    | |                   | |        | |
 // |  \| | _   __ _ | |__  | |_ __      __  __ _ | |_   ___ | |__
@@ -13,7 +14,7 @@
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test', 'nightwatch/examples'],
+  src_folders: ['test','nightwatch/examples'],
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
   page_objects_path: ['nightwatch/page-objects'],
@@ -26,10 +27,10 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   plugins: [],
-
+  
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: '',
-
+  
   webdriver: {},
 
   test_workers: {
@@ -50,26 +51,50 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome'
       },
-
+      
       webdriver: {
         start_process: true,
         server_path: ''
       },
-
-      test_runner: {
-        // set mocha as the runner
-        // For more info on using Mocha with Nightwatch, visit:
-        // https://nightwatchjs.org/guide/writing-tests/using-mocha.html
-        type: 'mocha',
-
-        // define mocha specific options
-        options: {
-          ui: 'bdd',
-          reporter: 'list'
+      
+    },
+    
+    safari: {
+      desiredCapabilities: {
+        browserName: 'safari',
+        alwaysMatch: {
+          acceptInsecureCerts: false
         }
+      },
+      webdriver: {
+        start_process: true,
+        server_path: ''
       }
     },
-
+    
+    firefox: {
+      desiredCapabilities: {
+        browserName: 'firefox',
+        alwaysMatch: {
+          acceptInsecureCerts: true,
+          'moz:firefoxOptions': {
+            args: [
+              // '-headless',
+              // '-verbose'
+            ]
+          }
+        }
+      },
+      webdriver: {
+        start_process: true,
+        server_path: '',
+        cli_args: [
+          // very verbose geckodriver logs
+          // '-vv'
+        ]
+      }
+    },
+    
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
@@ -95,13 +120,36 @@ module.exports = {
         ]
       }
     },
+    
+    edge: {
+      desiredCapabilities: {
+        browserName: 'MicrosoftEdge',
+        'ms:edgeOptions': {
+          w3c: true,
+          // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
+          args: [
+            //'--headless'
+          ]
+        }
+      },
 
+      webdriver: {
+        start_process: true,
+        // Follow https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=c-sharp#download-microsoft-edge-webdriver
+        // to download the Edge WebDriver and set the location of extracted `msedgedriver` below:
+        server_path: '',
+        cli_args: [
+          // --verbose
+        ]
+      }
+    },
+    
   },
-
+  
   usage_analytics: {
     enabled: true,
     log_path: './logs/analytics',
-    client_id: '773ce089-ae94-4e4f-843a-c9d2253ad3b7'
+    client_id: '2e7ca429-ed53-4018-8933-f3ab305d70ee'
   }
-
+  
 };

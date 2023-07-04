@@ -1,3 +1,8 @@
 node_modules
-package-lock.json
 logs
+**.html
+.DS_Store
+package-lock.json
+**.xml
+tests_output/**/**.json
+tests_output/**/**.html
